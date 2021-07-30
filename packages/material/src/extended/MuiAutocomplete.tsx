@@ -26,15 +26,21 @@ import React, { ReactNode } from 'react';
 import { EnumCellProps, EnumOption, WithClassname } from '@jsonforms/core';
 
 import Input from '@material-ui/core/Input';
-import Autocomplete, { AutocompleteRenderOptionState } from '@material-ui/lab/Autocomplete';
+import Autocomplete, { AutocompleteRenderOptionState } from '@material-ui/core/Autocomplete';
 import { areEqual } from '@jsonforms/react';
 import merge from 'lodash/merge';
-import { FilterOptionsState } from '@material-ui/lab/useAutocomplete';
+import { FilterOptionsState } from '@material-ui/core/useAutocomplete';
 
+export interface ExtendedEnumOption extends EnumOption {
+  label: string,
+  value: any,
+  selected: any,
+  inputValue: any
+}
 export interface WithOptionLabel {
-    getOptionLabel?(option: EnumOption) : string;
-    renderOption?(option: EnumOption, state: AutocompleteRenderOptionState): ReactNode;
-    filterOptions?(options: EnumOption[], state: FilterOptionsState<EnumOption>) : EnumOption[];
+    getOptionLabel?(option: ExtendedEnumOption) : string;
+    renderOption?(option: any, state: AutocompleteRenderOptionState): ReactNode;
+    filterOptions?(options: ExtendedEnumOption[], state: FilterOptionsState<ExtendedEnumOption>) : ExtendedEnumOption[];
 }
 
 export const MuiAutocomplete = React.memo((props: EnumCellProps & WithClassname & WithOptionLabel) => {
@@ -55,18 +61,18 @@ export const MuiAutocomplete = React.memo((props: EnumCellProps & WithClassname 
   const appliedUiSchemaOptions = merge({}, config, uischema.options);
   const [inputValue, setInputValue] = React.useState(data ?? '');
 
-  const findOption = options.find(o => o.value === data) ?? null;
+  const findOption = options.find((o:any) => o.value === data) ?? null;
   return (
     <Autocomplete
       className={className}
       id={id}
       disabled={!enabled}
       value={findOption}
-      onChange={(_event: any, newValue: EnumOption | null) => {
+      onChange={(_event: any, newValue: any | null) => {
         handleChange(path, newValue?.value);
       }}
       inputValue={inputValue}
-      onInputChange={(_event, newInputValue) => {
+      onInputChange={(_event, newInputValue:any) => {
         setInputValue(newInputValue);
       }}
       autoHighlight
@@ -74,7 +80,7 @@ export const MuiAutocomplete = React.memo((props: EnumCellProps & WithClassname 
       autoComplete
       fullWidth
       options={options}
-      getOptionLabel={getOptionLabel || (option => option?.label)}
+      getOptionLabel={getOptionLabel || ((option: any) => option?.label)}
       style={{ marginTop: 16 }}
       renderInput={params => (
         <Input

@@ -36,21 +36,10 @@ import {
 import { Control, withJsonFormsControlProps } from '@jsonforms/react';
 import moment from 'moment';
 import { Hidden } from '@material-ui/core';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import EventIcon from '@material-ui/icons/Event';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import {
-  KeyboardDateTimePicker,
-  MuiPickersUtilsProvider
-} from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
-
-// Workaround typing problems in @material-ui/pickers@3.2.3
-const AnyPropsKeyboardDateTimepicker: React.FunctionComponent<
-  any
-> = KeyboardDateTimePicker;
+import AdapterMoment from '@material-ui/lab/AdapterMoment';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
+import DateTimePicker from '@material-ui/lab/DateTimePicker';
+import TextField from '@material-ui/core/TextField';
 
 export class MaterialDateTimeControl extends Control<
   ControlProps,
@@ -77,36 +66,36 @@ export class MaterialDateTimeControl extends Control<
 
     return (
       <Hidden xsUp={!visible}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <AnyPropsKeyboardDateTimepicker
-            id={id + '-input'}
-            label={computeLabel(
-              isPlainLabel(label) ? label : label.default,
-              required,
-              appliedUiSchemaOptions.hideRequiredAsterisk
-            )}
-            error={!isValid}
-            fullWidth={!appliedUiSchemaOptions.trim}
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            helperText={!isValid ? errors : description}
-            InputLabelProps={{ shrink: true }}
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DateTimePicker
+            renderInput ={ (params: any )=>
+              <TextField 
+                {...params}
+                id={id + '-input'}
+                label={computeLabel(
+                  isPlainLabel(label) ? label : label.default,
+                  required,
+                  appliedUiSchemaOptions.hideRequiredAsterisk
+                )}
+                error={!isValid}
+                fullWidth={!appliedUiSchemaOptions.trim}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+                helperText={!isValid ? errors : description}
+                InputLabelProps={{ shrink: true }}
+                InputProps={inputProps}
+              />
+            }
             value={data || null}
             onChange={(datetime: any) =>
               handleChange(path, datetime ? moment(datetime).format() : '')
             }
-            format='MM/DD/YYYY h:mm a'
+            inputFormat='MM/DD/YYYY h:mm a'
             clearable={true}
             disabled={!enabled}
-            autoFocus={appliedUiSchemaOptions.focus}
-            leftArrowIcon={<KeyboardArrowLeftIcon />}
-            rightArrowIcon={<KeyboardArrowRightIcon />}
-            dateRangeIcon={<DateRangeIcon />}
-            keyboardIcon={<EventIcon />}
-            timeIcon={<AccessTimeIcon />}
-            InputProps={inputProps}
+            autoFocus={appliedUiSchemaOptions.focus}            
           />
-        </MuiPickersUtilsProvider>
+        </LocalizationProvider>
       </Hidden>
     );
   }

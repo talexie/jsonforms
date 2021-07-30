@@ -132,12 +132,12 @@ const ExpandPanelRenderer = (props: ExpandPanelProps) => {
             </Grid>
           </Grid>
           <Grid item xs={5} md={3}>
-            <Grid container justify={'flex-end'}>
+            <Grid container justifyContent={'flex-end'}>
               <Grid item>
                 <Grid
                   container
                   direction='row'
-                  justify='center'
+                  justifyContent='center'
                   alignItems='center'
                 >
                   {appliedUiSchemaOptions.showSortButtons ? (
@@ -148,7 +148,7 @@ const ExpandPanelRenderer = (props: ExpandPanelProps) => {
                           style={iconStyle}
                           disabled={!enableMoveUp}
                           aria-label={`Move up`}
-                        >
+                          size="large">
                           <ArrowUpward />
                         </IconButton>
                       </Grid>
@@ -158,7 +158,7 @@ const ExpandPanelRenderer = (props: ExpandPanelProps) => {
                           style={iconStyle}
                           disabled={!enableMoveDown}
                           aria-label={`Move down`}
-                        >
+                          size="large">
                           <ArrowDownward />
                         </IconButton>
                       </Grid>
@@ -171,7 +171,7 @@ const ExpandPanelRenderer = (props: ExpandPanelProps) => {
                       onClick={removeItems(path, [index])}
                       style={iconStyle}
                       aria-label={`Delete`}
-                    >
+                      size="large">
                       <DeleteIcon />
                     </IconButton>
                   </Grid>

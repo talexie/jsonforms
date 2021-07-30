@@ -276,17 +276,13 @@ const NonEmptyRow = React.memo(
             <Grid
               container
               direction='row'
-              justify='flex-end'
+              justifyContent='flex-end'
               alignItems='center'
             >
               {showSortButtons ? (
                 <Fragment>
                   <Grid item>
-                    <IconButton
-                      aria-label={`Move up`}
-                      onClick={moveUp}
-                      disabled={!enableUp}
-                    >
+                    <IconButton aria-label={`Move up`} onClick={moveUp} disabled={!enableUp} size="large">
                       <ArrowUpward />
                     </IconButton>
                   </Grid>
@@ -295,7 +291,7 @@ const NonEmptyRow = React.memo(
                       aria-label={`Move down`}
                       onClick={moveDown}
                       disabled={!enableDown}
-                    >
+                      size="large">
                       <ArrowDownward />
                     </IconButton>
                   </Grid>
@@ -305,7 +301,7 @@ const NonEmptyRow = React.memo(
                 <IconButton
                   aria-label={`Delete`}
                   onClick={() => openDeleteDialog(childPath, rowIndex)}
-                >
+                  size="large">
                   <DeleteIcon />
                 </IconButton>
               </Grid>

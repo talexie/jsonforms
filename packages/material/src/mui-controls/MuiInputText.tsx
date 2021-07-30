@@ -103,8 +103,8 @@ export const MuiInputText = React.memo((props: CellProps & WithClassname & MuiTe
         >
           <IconButton
             aria-label='Clear input field'
-            onClick={() => handleChange(path, undefined)}   
-          >
+            onClick={() => handleChange(path, undefined)}
+            size="large">
             <Close style={{background: inputDeleteBackgroundColor, borderRadius: '50%'}}/>
           </IconButton>
         </InputAdornment>

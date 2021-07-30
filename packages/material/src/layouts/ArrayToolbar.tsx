@@ -22,7 +22,7 @@ export const ArrayLayoutToolbar = React.memo(
   }: ArrayLayoutToolbarProps) => {
     return (
       <Toolbar disableGutters={true}>
-        <Grid container alignItems='center' justify='space-between'>
+        <Grid container alignItems='center' justifyContent='space-between'>
           <Grid item>
             <Typography variant={'h6'}>{label}</Typography>
           </Grid>
@@ -42,7 +42,7 @@ export const ArrayLayoutToolbar = React.memo(
                   <IconButton
                     aria-label={`Add to ${label}`}
                     onClick={addItem(path, createDefault())}
-                  >
+                    size="large">
                     <AddIcon />
                   </IconButton>
                 </Tooltip>

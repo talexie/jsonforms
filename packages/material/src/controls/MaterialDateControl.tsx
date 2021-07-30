@@ -38,25 +38,15 @@ import {
 } from '@jsonforms/core';
 import { Control, withJsonFormsControlProps } from '@jsonforms/react';
 import { Hidden } from '@material-ui/core';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import EventIcon from '@material-ui/icons/Event';
 import moment from 'moment';
 import { Moment } from 'moment';
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider
-} from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
-
+import AdapterMoment from '@material-ui/lab/AdapterMoment';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
+import DatePicker from '@material-ui/lab/DatePicker';
+import TextField from '@material-ui/core/TextField';
 export interface DateControl {
   momentLocale?: Moment;
 }
-
-// Workaround typing problems in @material-ui/pickers@3.2.3
-const AnyPropsKeyboardDatePicker: React.FunctionComponent<
-  any
-> = KeyboardDatePicker;
 
 export class MaterialDateControl extends Control<
   StatePropsOfDateControl & DispatchPropsOfControl & DateControl,
@@ -94,9 +84,9 @@ export class MaterialDateControl extends Control<
       ? `${momentLocale.localeData().longDateFormat('L')}`
       : 'YYYY-MM-DD';
 
-    let labelText;
-    let labelCancel;
-    let labelClear;
+    let labelText: string;
+    let labelCancel: string;
+    let labelClear: string;
 
     if (isPlainLabel(label)) {
       labelText = label;
@@ -110,18 +100,24 @@ export class MaterialDateControl extends Control<
 
     return (
       <Hidden xsUp={!visible}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <AnyPropsKeyboardDatePicker
-            id={id + '-input'}
-            label={computeLabel(
-              labelText,
-              required,
-              appliedUiSchemaOptions.hideRequiredAsterisk
-            )}
-            error={!isValid}
-            fullWidth={!appliedUiSchemaOptions.trim}
-            helperText={!isValid ? errors : showDescription ? description : ' '}
-            InputLabelProps={{ shrink: true }}
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DatePicker
+            renderInput ={ (params: any )=>
+            <TextField {...params}
+              id={id + '-input'}
+              label={computeLabel(
+                labelText,
+                required,
+                appliedUiSchemaOptions.hideRequiredAsterisk
+              )}
+              error={!isValid}
+              fullWidth={!appliedUiSchemaOptions.trim}
+              helperText={!isValid ? errors : showDescription ? description : ' '}
+              InputLabelProps={{ shrink: true }}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              InputProps={inputProps}
+            />}           
             value={data || null}
             onChange={(datetime: any) =>
               handleChange(
@@ -129,20 +125,14 @@ export class MaterialDateControl extends Control<
                 datetime ? moment(datetime).format('YYYY-MM-DD') : ''
               )
             }
-            format={localeDateTimeFormat}
+            inputFormat={localeDateTimeFormat}
             clearable={true}
+            clearText = { labelCancel }
+            cancelText = { labelClear }
             disabled={!enabled}
             autoFocus={appliedUiSchemaOptions.focus}
-            onFocus={this.onFocus}
-            onBlur={this.onBlur}
-            cancelLabel={labelCancel}
-            clearLabel={labelClear}
-            leftArrowIcon={<KeyboardArrowLeftIcon />}
-            rightArrowIcon={<KeyboardArrowRightIcon />}
-            keyboardIcon={<EventIcon />}
-            InputProps={inputProps}
           />
-        </MuiPickersUtilsProvider>
+        </LocalizationProvider>
       </Hidden>
     );
   }
