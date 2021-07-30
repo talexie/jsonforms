@@ -1,6 +1,6 @@
 {
   "name": "@jsonforms/core",
-  "version": "3.0.4-alpha.0",
+  "version": "3.0.5-alpha.0",
   "description": "Core module of JSON Forms",
   "repository": "https://github.com/eclipsesource/jsonforms",
   "bugs": "https://github.com/eclipsesource/jsonforms/issues",
@@ -84,5 +84,5 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.2.1"
   },
-  "gitHead": "07615d7382de41433363c22fa8c2ad9215c7e635"
+  "gitHead": "47d9d13a7199b72686a79c8e7fa6bdefa82f13f4"
 }

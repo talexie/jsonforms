@@ -1,6 +1,6 @@
 {
   "name": "@alkuip-jsonforms/material-renderers",
-  "version": "3.0.4-alpha.0",
+  "version": "3.0.5-alpha.0",
   "description": "Material Renderer Set for JSON Forms",
   "repository": "https://github.com/eclipsesource/jsonforms",
   "bugs": "https://github.com/eclipsesource/jsonforms/issues",
@@ -81,8 +81,8 @@
     "@material-ui/lab": "^4.0.0-alpha.56"
   },
   "devDependencies": {
-    "@jsonforms/core": "^3.0.4-alpha.0",
-    "@jsonforms/react": "^3.0.4-alpha.0",
+    "@jsonforms/core": "^3.0.5-alpha.0",
+    "@jsonforms/react": "^3.0.5-alpha.0",
     "@material-ui/core": "^4.7.0",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -107,5 +107,5 @@
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.9.0"
   },
-  "gitHead": "07615d7382de41433363c22fa8c2ad9215c7e635"
+  "gitHead": "47d9d13a7199b72686a79c8e7fa6bdefa82f13f4"
 }
