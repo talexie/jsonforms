@@ -1,5 +1,5 @@
 {
-  "name": "jsonforms-monorepo",
+  "name": "@alkuip/jsonforms-monorepo",
   "scripts": {
     "lerna": "lerna",
     "preparePublish": "git clean -dfx && npm ci && npm run init && npm run clean && npm run build && npm run bundle && npm run test",
@@ -37,7 +37,7 @@
     "tslint": "^5.20.1",
     "tslint-loader": "^3.5.4",
     "tslint-react": "^4.1.0",
-    "typedoc": "^0.19.2",
+    "typedoc": "^0.21.4",
     "typescript": "3.8.3",
     "webpack": "^4.41.2",
     "webpack-merge": "^4.2.2"
