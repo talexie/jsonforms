@@ -42,5 +42,5 @@
     "webpack": "^4.41.2",
     "webpack-merge": "^4.2.2"
   },
-  "version": "3.0.0-alpha.0.0"
+  "version": "3.0.0-alpha.0.1"
 }

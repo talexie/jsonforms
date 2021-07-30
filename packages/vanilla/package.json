@@ -6,6 +6,7 @@
   "bugs": "https://github.com/eclipsesource/jsonforms/issues",
   "homepage": "http://jsonforms.io/",
   "license": "MIT",
+  "private": true,
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {

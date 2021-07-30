@@ -1,11 +1,14 @@
 {
-  "name": "@alkuip-jsonforms/material-renderers",
+  "name": "@alkuip/jsonforms-material-renderers",
   "version": "3.0.5-alpha.0",
   "description": "Material Renderer Set for JSON Forms",
   "repository": "https://github.com/eclipsesource/jsonforms",
   "bugs": "https://github.com/eclipsesource/jsonforms/issues",
   "homepage": "http://jsonforms.io/",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "directories": {
     "example": "example",
     "src": "src",
